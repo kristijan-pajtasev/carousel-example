@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Carousel</title>
+        <style type="text/css">
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                width: 300px;
+                height: 300px;
+                overflow: hidden;
+                position: relative;
+            }
+            img {
+                width: 300px;
+                height: 300px;
+            }
+            li {
+                position: absolute;
+                top: 0;
+                -webkit-transition: 1s left, opacity 0.5s;
+                -moz-transition: 1s left, opacity 0.5s;
+                transition: 1s left, opacity 0.5s;
+            }
+            li.left {
+                opacity: 0;
+                left: -100%;
+            }
+            li.right {
+                opacity: 0;
+                left: 100%;
+            }
+            li.active {
+                opacity: 1;
+                left: 0;
+            }
+        </style>
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript">
+            var carouselCounter = 0;
+            jQuery(document).keydown(function(event){
+                var keyLeft = 37;
+                var keyRight = 39;
+
+                var keyCode = event.keyCode;
+
+
+                var totalImages = jQuery("li").length;
+                var activeImage = jQuery("li.active");
+                if(keyCode == keyLeft) {
+                    carouselCounter = (carouselCounter + 1) % totalImages;
+                    jQuery(jQuery(".left")[0]).addClass("right").removeClass("left");
+                    jQuery(activeImage).addClass("left").removeClass("active");
+                } else {
+                    carouselCounter = (carouselCounter - 1) % totalImages;
+                    jQuery(jQuery(".right")[0]).addClass("left").removeClass("right");
+                    jQuery(activeImage).addClass("right").removeClass("active");
+                }
+                console.log(carouselCounter);
+
+                var nextImage = jQuery("li")[Math.abs(carouselCounter)];
+                jQuery(nextImage).addClass("active").removeClass("right").removeClass("left");
+            })
+        </script>
+    </head>
+    <body>
+        <ul>
+            <li class="active" ><img src="img/placeholder_1.jpg"/></li>
+            <li class="right" ><img src="img/placeholder_2.png"/></li>
+            <li class="left" ><img src="img/placeholder_3.png"/></li>
+        </ul>
+    </body>
+</html>
