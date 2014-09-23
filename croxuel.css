@@ -1,0 +1,38 @@
+ul#croxuel {
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+}
+#croxuel li {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+}
+#croxuel img {
+    width: 100%;
+    height: 100%;
+}
+#croxuel .active, #croxuel .leftTransition,
+#croxuel .rightTransition {
+    -moz-transition: 0.5s left;
+    -webkit-transition: 0.5s left;
+    transition: 0.5s left;
+}
+#croxuel li.left,
+#croxuel li.leftTransition {
+    left: -100%;
+    z-index: 0;
+}
+#croxuel li.active {
+    left: 0;
+    z-index: 10;
+}
+#croxuel li.right,
+#croxuel li.rightTransition {
+    left: 100%;
+    z-index: 0;
+}
