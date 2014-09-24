@@ -5,8 +5,6 @@ Carousel example by using css and javascript
 
 This is second version which does not depend on jQuery but uses CSS transition.
 
-Current version supports only 3 images sliding.
-
 Carousel will take full size of parent
 
 Usage
@@ -20,6 +18,10 @@ Usage
                 <li class="left"><img src="img/placeholder_1.jpg" /></li>
                 <li class="active"><img src="img/placeholder_2.png" /></li>
                 <li class="right"><img src="img/placeholder_3.png" /></li>
+                <li class="right"><img src="img/placeholder_4.jpg" /></li>
+                <li class="right"><img src="img/placeholder_5.jpg" /></li>
+                <li class="right"><img src="img/placeholder_6.jpg" /></li>
+                <li class="right"><img src="img/placeholder_7.jpg" /></li>
             </ul>
 ```
 
@@ -56,3 +58,13 @@ Example:
 	<button data-croxuel_left_button>left</button>
 	<button data-croxuel_right_button>right</button>
 ```
+
+TODO
+====
+1. Adding active, left and right classes to li on init.
+
+2. Add opacity animation
+
+3. Refactor code
+
+4. Add min verions

@@ -2,16 +2,50 @@ var Croxuel = (function() {
 
     var isAnimating = false;
 
+    function getPrevious(className, index, array) {
+        var length = array.length;
+        var nextNode;
+        for(var i = 0; i < length; i++) {
+            var nextIndex = Math.abs(index - i) % length;
+            var node = array[nextIndex];
+            if(node.className.indexOf(className) >= 0) {
+                nextNode = node;
+                break;
+            }
+        }
+        return nextNode;
+    }
+
+    function getNext(className, index, array) {
+        var length = array.length;
+        var nextNode;
+        for(var i = 0; i < length; i++) {
+            var nextIndex = (index + i) % length;
+            var node = array[nextIndex];
+            if(node.className.indexOf(className) >= 0) {
+                nextNode = node;
+                break;
+            }
+        }
+        return nextNode;
+    }
+
     function left() {
         if(!isAnimating) {
             isAnimating = true;
-            var activeImage = document.querySelector("#croxuel li.active");
-            var leftImage = document.querySelector("#croxuel li.left");
-            var rightImage = document.querySelector("#croxuel li.right");
+            var li = document.querySelectorAll("li");
+            var liActive = document.querySelector("li.active");
 
-            activeImage.className = "leftTransition";
-            leftImage.className = "right";
-            rightImage.className = "active";
+            var liArray = [];
+            for(var i = 0, length = li.length; i < length; i++) {
+                liArray.push(li[i]);
+            }
+            var activeIndex = liArray.indexOf(liActive);
+            var leftLi = getPrevious("left", activeIndex, liArray);
+            var rightLi = getNext("right", activeIndex, liArray);
+            liActive.className = "leftTransition";
+            leftLi.className = "right";
+            rightLi.className = "active";
 
             setTimeout(function () {
                 var rightImageTransition = document.querySelector("#croxuel li.leftTransition");
@@ -24,13 +58,19 @@ var Croxuel = (function() {
     function right() {
         if(!isAnimating) {
             isAnimating = true;
-            var activeImage = document.querySelector("#croxuel li.active");
-            var leftImage = document.querySelector("#croxuel li.left");
-            var rightImage = document.querySelector("#croxuel li.right");
+            var li = document.querySelectorAll("li");
+            var liActive = document.querySelector("li.active");
 
-            activeImage.className = "rightTransition";
-            leftImage.className = "active";
-            rightImage.className = "left";
+            var liArray = [];
+            for(var i = 0, length = li.length; i < length; i++) {
+                liArray.push(li[i]);
+            }
+            var activeIndex = liArray.indexOf(liActive);
+            var leftLi = getNext("left", activeIndex, liArray);
+            var rightLi = getPrevious("right", activeIndex, liArray);
+            liActive.className = "rightTransition";
+            leftLi.className = "active";
+            rightLi.className = "left";
 
             setTimeout(function () {
                 var rightImageTransition = document.querySelector("#croxuel li.rightTransition");
@@ -91,3 +131,44 @@ var Croxuel = (function() {
 
 Croxuel.init();
 
+//var li = document.querySelectorAll("li");
+//var liActive = document.querySelector("li.active");
+//
+//var liArray = [];
+//for(var i = 0, length = li.length; i < length; i++) {
+//    liArray.push(li[i]);
+//}
+//var activeIndex = liArray.indexOf(liActive);
+//var leftLi = getPrevious("left", activeIndex, liArray);
+//var rightLi = getNext("right", activeIndex, liArray);
+//liActive.className = "left";
+//leftLi.className = "right";
+//rightLi.className = "active";
+//
+//function getNext(className, index, array) {
+//    var length = array.length;
+//    var nextNode;
+//    for(var i = 0; i < length; i++) {
+//        var nextIndex = (index + i) % length;
+//        var node = array[nextIndex];
+//        if(node.className.indexOf(className) >= 0) {
+//            nextNode = node;
+//            break;
+//        }
+//    }
+//    return nextNode;
+//}
+//
+//function getPrevious(className, index, array) {
+//    var length = array.length;
+//    var nextNode;
+//    for(var i = 0; i < length; i++) {
+//        var nextIndex = Math.abs(index - i) % length;
+//        var node = array[nextIndex];
+//        if(node.className.indexOf(className) >= 0) {
+//            nextNode = node;
+//            break;
+//        }
+//    }
+//    return nextNode;
+//}
