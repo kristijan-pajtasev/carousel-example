@@ -1,11 +1,15 @@
 carousel-example
 ================
 
-Carousel example by using css and javascript
+Carousel example by using css and javascript. 
 
-This is second version which does not depend on jQuery but uses CSS transition.
+Example is in demo folder and minified versions are in dist folder.
 
-Carousel will take full size of parent
+It uses pure JavaScript and CSS transition.
+
+Carousel will take full size of parent tag.
+
+Grunt has task min which minifies css and js.
 
 Usage
 =====
@@ -67,4 +71,3 @@ TODO
 
 3. Refactor code
 
-4. Add min verions
